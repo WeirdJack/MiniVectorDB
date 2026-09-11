@@ -5,7 +5,7 @@ public class VectorMath {
     double currentMagnitude = 0.0;
     double currentCosineSimilarity = 0.0;
 
-    public double dotProduct(double[] a, double[] b){
+    public static double dotProduct(double[] a, double[] b){
         if (a.length != b.length) {
             throw new IllegalArgumentException(
                     "Vectors must have the same length: got " + a.length + " and " + b.length);
@@ -15,11 +15,11 @@ public class VectorMath {
         return currentDotProduct;
     }
 
-    public double magnitude(double[] x){
+    public static double magnitude(double[] x){
         return Math.sqrt(dotProduct(x,x));
     }
 
-    public double cosineSimilarity(double[] x, double[] y){
+    public static double cosineSimilarity(double[] x, double[] y){
         if (magnitude(x) == 0 || magnitude(y) == 0) {
             throw new IllegalArgumentException(
                     "Vectors must have non zero magnitude: got magnitude(x): " + magnitude(x) + " and magnitude(y): " + magnitude(y));
