@@ -1,9 +1,6 @@
 package vectordb;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Benchmark {
 
@@ -42,6 +39,21 @@ public class Benchmark {
         Arrays.sort(latencies);
         System.out.println("max: " + latencies[queryVectors.size() - 1] + " min: " + latencies[0]);
         System.out.println("Average Latency: " + (double) latencySum/latencies.length);
+    }
+
+    public double recallAtK(List<SearchResult> groundResults, List<SearchResult> approxResults, int k){
+        Set<String> set = new HashSet<>();
+        for (SearchResult searchResult : groundResults)
+            set.add(searchResult.id());
+
+        int count = 0;
+        for (SearchResult sr : approxResults){
+            if (set.contains(sr.id())){
+                count++;
+            }
+        }
+
+        return (double) count/k;
     }
 
     public static void main(String[] args){
